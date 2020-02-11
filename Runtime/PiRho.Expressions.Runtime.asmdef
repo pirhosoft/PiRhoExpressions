@@ -1,0 +1,16 @@
+{
+    "name": "PiRho.Expressions.Runtime",
+    "references": [
+        "PiRho.Utilities.Runtime",
+        "PiRho.Variables.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

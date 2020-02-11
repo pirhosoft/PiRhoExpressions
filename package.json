@@ -1,0 +1,18 @@
+{
+	"name": "com.pirho.expressions",
+	"version": "0.0.1",
+	"displayName": "PiRho Expressions",
+	"description": "A basic expression lexer, parser, and evaluator",
+	"unity": "2019.3",
+	"keywords": [ "runtime", "utilities", "extensions" ],
+	"author": {
+		"name": "PiRho Soft",
+		"email": "admin@pirhosoft.com",
+		"url": "https://pirhosoft.com/"
+	},
+	"dependencies": {
+		"com.unity.addressables": "1.1.10",
+		"com.pirho.utilities": "2.1.0",
+		"com.pirho.variables": "0.0.1"
+	}
+}

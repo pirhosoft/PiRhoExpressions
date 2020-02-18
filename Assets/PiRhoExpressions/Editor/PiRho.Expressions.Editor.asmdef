@@ -1,0 +1,19 @@
+{
+    "name": "PiRho.Expressions.Editor",
+    "references": [
+        "GUID:78824fde5ef6d714d80af44737fb5cfd",
+        "GUID:ad6ad0f1fbea6914a8d5c59e8acd21a6",
+        "GUID:578161fc3021b8d439e4e23de1821081",
+        "GUID:3715f24fc38286044b48d4ff45a54a39",
+        "GUID:e9f8ee77fa5328c449d211d7bc75379b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

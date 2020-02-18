@@ -267,7 +267,7 @@ namespace PiRhoSoft.Expressions
 
 	public class IntLiteralLexerRule : RegexLexerRule
 	{
-		private static Regex _regex = new Regex(@"\G[+-]?[0-9]+", RegexOptions.Compiled);
+		private static readonly Regex _regex = new Regex(@"\G[+-]?[0-9]+", RegexOptions.Compiled);
 
 		public IntLiteralLexerRule() : base(TokenType.Literal, _regex) { }
 
@@ -280,7 +280,7 @@ namespace PiRhoSoft.Expressions
 
 	public class FloatLiteralLexerRule : RegexLexerRule
 	{
-		private static Regex _regex = new Regex(@"\G[+-]?[0-9]*[.][0-9]+", RegexOptions.Compiled);
+		private static readonly Regex _regex = new Regex(@"\G[+-]?[0-9]*[.][0-9]+", RegexOptions.Compiled);
 
 		public FloatLiteralLexerRule() : base(TokenType.Literal, _regex) { }
 
@@ -293,7 +293,7 @@ namespace PiRhoSoft.Expressions
 
 	public class StringLiteralLexerRule : RegexLexerRule
 	{
-		private static Regex _regex = new Regex("\\G\"(.(?!(?<![\\\\])\"))*.?\"", RegexOptions.Compiled);
+		private static readonly Regex _regex = new Regex("\\G\"(.(?!(?<![\\\\])\"))*.?\"", RegexOptions.Compiled);
 
 		public StringLiteralLexerRule() : base(TokenType.Literal, _regex) { }
 
@@ -309,7 +309,7 @@ namespace PiRhoSoft.Expressions
 		private const float _component1Ratio = 0x11 / 255.0f;
 		private const float _component2Ratio = 1 / 255.0f;
 
-		private static Regex _regex = new Regex(@"\G#[A-Fa-f0-9]{3,8}", RegexOptions.Compiled);
+		private static readonly Regex _regex = new Regex(@"\G#[A-Fa-f0-9]{3,8}", RegexOptions.Compiled);
 
 		public ColorLiteralLexerRule() : base(TokenType.Literal, _regex) { }
 
@@ -376,8 +376,8 @@ namespace PiRhoSoft.Expressions
 
 	public class CommentLexerRule : ILexerRule
 	{
-		private string _opening;
-		private string _closing;
+		private readonly string _opening;
+		private readonly string _closing;
 
 		public CommentLexerRule(string opening, string closing)
 		{
@@ -401,7 +401,7 @@ namespace PiRhoSoft.Expressions
 
 	public class WhitespaceLexerRule : RegexLexerRule
 	{
-		private static Regex _regex = new Regex(@"\G\s+", RegexOptions.Compiled);
+		private static readonly Regex _regex = new Regex(@"\G\s+", RegexOptions.Compiled);
 		public WhitespaceLexerRule() : base(TokenType.Whitespace, _regex) { }
 	}
 
@@ -411,7 +411,7 @@ namespace PiRhoSoft.Expressions
 
 	public class StartInterpolateLexerRule : ILexerRule
 	{
-		private char _character;
+		private readonly char _character;
 
 		public StartInterpolateLexerRule(char c)
 		{
@@ -434,13 +434,13 @@ namespace PiRhoSoft.Expressions
 
 	public class InterpolateLexerRule : RegexLexerRule
 	{
-		private static Regex _regex = new Regex(@"\G(.(?!(?<![\\])[`\{]))+.?", RegexOptions.Compiled | RegexOptions.Singleline);
+		private static readonly Regex _regex = new Regex(@"\G(.(?!(?<![\\])[`\{]))+.?", RegexOptions.Compiled | RegexOptions.Singleline);
 		public InterpolateLexerRule() : base(TokenType.Literal, _regex) { }
 	}
 
 	public class EndInterpolateLexerRule : ILexerRule
 	{
-		private char _character;
+		private readonly char _character;
 
 		public EndInterpolateLexerRule(char c)
 		{

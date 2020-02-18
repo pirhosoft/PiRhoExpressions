@@ -358,7 +358,7 @@ namespace PiRhoSoft.Expressions
 		private class VariableOperation : IPrefixOperator
 		{
 			private Token _token;
-			private Func<Variable> _function;
+			private readonly Func<Variable> _function;
 
 			public VariableOperation(Func<Variable> function) => _function = function;
 			public void Parse(IParseContext parser, Token token) => _token = token;
@@ -369,7 +369,7 @@ namespace PiRhoSoft.Expressions
 
 		private class IdentifierOperation : IPrefixOperator, IAssignableOperation
 		{
-			private Token _token;
+			private readonly Token _token;
 
 			public IdentifierOperation(Token token) => _token = token;
 			public void Parse(IParseContext parser, Token token) { }

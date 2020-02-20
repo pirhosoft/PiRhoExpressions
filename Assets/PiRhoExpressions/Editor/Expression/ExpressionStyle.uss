@@ -1,0 +1,23 @@
+﻿.pirho-expression
+{
+}
+
+.pirho-expression__input__text
+{
+	margin: 1px 0px;
+}
+
+.pirho-expression__input__message
+{
+	display: none;
+}
+
+.pirho-expression__input__message.pirho-message-box
+{
+	font-size: 100%;
+}
+
+.pirho-expression--invalid .pirho-expression__input__message
+{
+	display: flex;
+}

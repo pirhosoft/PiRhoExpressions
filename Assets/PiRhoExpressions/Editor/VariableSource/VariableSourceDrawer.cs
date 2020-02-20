@@ -21,11 +21,11 @@ namespace PiRhoSoft.Expressions.Editor
 			var valueProperty = property.FindPropertyRelative(nameof(VariableSource.Value));
 
 			var typeField = new PropertyField(typeProperty);
-			var referenceField = new PropertyField(expressionProperty);
+			var expressionField = new PropertyField(expressionProperty);
 			var valueField = new PropertyField(valueProperty);
 
 			frame.Content.Add(typeField);
-			frame.Content.Add(referenceField);
+			frame.Content.Add(expressionField);
 			frame.Content.Add(valueField);
 
 			return frame;

@@ -22,12 +22,13 @@ namespace PiRhoSoft.Expressions
 		[NoLabel]
 		public VariableSourceType Type = VariableSourceType.Value;
 
+		[Conditional(nameof(Type), (int)VariableSourceType.Value, EnumTest.ShowIfEqual)]
+		[NoLabel]
+		public SerializedVariable Value = new SerializedVariable();
+
 		[Conditional(nameof(Type), (int)VariableSourceType.Expression, EnumTest.ShowIfEqual)]
 		[NoLabel]
 		public ReadOnlyExpression Expression = new ReadOnlyExpression();
-
-		[Conditional(nameof(Type), (int)VariableSourceType.Value, EnumTest.ShowIfEqual)]
-		public SerializedVariable Value = new SerializedVariable();
 
 		public VariableSource()
 		{

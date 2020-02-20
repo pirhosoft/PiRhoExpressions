@@ -27,7 +27,6 @@ namespace PiRhoSoft.Expressions
 		public ReadOnlyExpression Expression = new ReadOnlyExpression();
 
 		[Conditional(nameof(Type), (int)VariableSourceType.Value, EnumTest.ShowIfEqual)]
-		[NoLabel]
 		public SerializedVariable Value = new SerializedVariable();
 
 		public VariableSource()

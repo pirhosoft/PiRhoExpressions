@@ -8,7 +8,7 @@ namespace PiRhoSoft.Expressions
 	public class Expression : ISerializationCallbackReceiver
 	{
 		[SerializeField] private string _content;
-		private IOperation _operation;
+		protected IOperation _operation;
 
 		public string Content
 		{
@@ -16,8 +16,7 @@ namespace PiRhoSoft.Expressions
 			set { _content = value; Compile(); }
 		}
 
-		public bool IsValid => _operation != null;
-
+		public virtual bool IsValid => _operation != null;
 		public virtual Lexer Lexer => Lexer.Default;
 		public virtual Parser Parser => Parser.Default;
 
@@ -79,7 +78,7 @@ namespace PiRhoSoft.Expressions
 	[Serializable]
 	public class AssignmentExpression : Expression
 	{
-		// TODO: IsValid -> _operation is assignment operator
+		public override bool IsValid => _operation is AssignmentOperator;
 		public override Parser Parser => Parser.Assignment;
 	}
 

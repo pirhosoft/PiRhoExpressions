@@ -22,6 +22,7 @@ namespace PiRhoSoft.Expressions
 
 		// TODO: Overload with 'this' that is assigned to a wrapper dictionary. Also 'value' as overload on
 		// AssignmentExpression handled the same way
+		private AggregateDictionary _variables;
 
 		public Variable Execute(IVariableDictionary variables)
 		{
@@ -80,6 +81,13 @@ namespace PiRhoSoft.Expressions
 	{
 		public override bool IsValid => _operation is AssignmentOperator;
 		public override Parser Parser => Parser.Assignment;
+
+		public void Assign(IVariableDictionary variables, Variable value)
+		{
+			variables.AddVariable("this", value);
+			_operation.Evaluate(variables);
+			variables.RemoveVariable("this");
+		}
 	}
 
 	[Serializable]

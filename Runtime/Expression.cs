@@ -22,7 +22,6 @@ namespace PiRhoSoft.Expressions
 
 		// TODO: Overload with 'this' that is assigned to a wrapper dictionary. Also 'value' as overload on
 		// AssignmentExpression handled the same way
-		private AggregateDictionary _variables;
 
 		public Variable Execute(IVariableDictionary variables)
 		{

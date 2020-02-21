@@ -83,9 +83,9 @@ namespace PiRhoSoft.Expressions
 
 		public void Assign(IVariableDictionary variables, Variable value)
 		{
-			variables.AddVariable("this", value);
+			variables.AddVariable("value", value);
 			_operation.Evaluate(variables);
-			variables.RemoveVariable("this");
+			variables.RemoveVariable("value");
 		}
 	}
 

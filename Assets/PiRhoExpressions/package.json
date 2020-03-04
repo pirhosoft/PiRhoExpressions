@@ -14,5 +14,12 @@
 		"com.unity.addressables": "1.1.10",
 		"com.pirho.utilities": "2.1.0",
 		"com.pirho.variables": "0.0.1"
-	}
+	},
+	"samples": [
+		{
+			"displayName": "PiRhoExpressions Samples",
+			"description": "Sample scene and scripts to show how PiRhoExpressions can be used",
+			"path": "Samples~/PiRhoExpressionsSamples"
+		}
+	]
 }

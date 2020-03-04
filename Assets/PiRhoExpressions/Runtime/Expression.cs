@@ -20,9 +20,6 @@ namespace PiRhoSoft.Expressions
 		public virtual Lexer Lexer => Lexer.Default;
 		public virtual Parser Parser => Parser.Default;
 
-		// TODO: Overload with 'this' that is assigned to a wrapper dictionary. Also 'value' as overload on
-		// AssignmentExpression handled the same way
-
 		public Variable Execute(IVariableDictionary variables)
 		{
 			return IsValid
@@ -48,6 +45,33 @@ namespace PiRhoSoft.Expressions
 				throw new VariableSourceException();
 
 			return variable.As<ExpectedType>();
+		}
+
+		public Variable Execute(IVariableDictionary variables, Variable thisObject)
+		{
+			variables.AddVariable("this", thisObject);
+			var variable = Execute(variables);
+			variables.RemoveVariable("this");
+
+			return variable;
+		}
+
+		public Variable Execute(IVariableDictionary variables, VariableType expectedType, Variable thisObject)
+		{
+			variables.AddVariable("this", thisObject);
+			var variable =  Execute(variables, expectedType);
+			variables.RemoveVariable("this");
+
+			return variable;
+		}
+
+		public ExpectedType Execute<ExpectedType>(IVariableDictionary variables, Variable thisObject)
+		{
+			variables.AddVariable("this", thisObject);
+			var variable = Execute<ExpectedType>(variables);
+			variables.RemoveVariable("this");
+
+			return variable;
 		}
 
 		private void Compile()
@@ -78,7 +102,7 @@ namespace PiRhoSoft.Expressions
 	[Serializable]
 	public class AssignmentExpression : Expression
 	{
-		public override bool IsValid => _operation is AssignmentOperator;
+		public override bool IsValid => _operation is AssignOperator;
 		public override Parser Parser => Parser.Assignment;
 
 		public void Assign(IVariableDictionary variables, Variable value)
@@ -87,12 +111,19 @@ namespace PiRhoSoft.Expressions
 			_operation.Evaluate(variables);
 			variables.RemoveVariable("value");
 		}
+
+		public void Assign(IVariableDictionary variables, Variable value, Variable thisObject)
+		{
+			variables.AddVariable("this", thisObject);
+			Assign(variables, value);
+			variables.RemoveVariable("this");
+		}
 	}
 
 	[Serializable]
 	public class StringExpression : Expression
 	{
-		// TODO: Figure out how to make this not half to include ` at the start and end.
+		// TODO: Figure out how to make this not have to include ` at the start and end.
 		public override Parser Parser => Parser.String;
 	}
 }

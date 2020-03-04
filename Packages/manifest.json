@@ -39,11 +39,11 @@
   "lock": {
     "com.pirho.utilities": {
       "revision": "upm",
-      "hash": "fda5d8177a8177056f57e37aecaea2a942c02ab1"
+      "hash": "11424d6c3b7a0076fc62b16b91f94c4db4bac42a"
     },
     "com.pirho.variables": {
       "revision": "upm",
-      "hash": "561a20f4fa6b7c4803f4b5a1624dbbf139e2f576"
+      "hash": "0edc670bb6faa90f99f1527eb13e9e8220560247"
     }
   }
 }

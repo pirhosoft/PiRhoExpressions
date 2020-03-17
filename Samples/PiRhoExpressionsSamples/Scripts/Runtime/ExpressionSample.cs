@@ -5,7 +5,7 @@ namespace PiRhoSoft.Expressions.Samples
 {
 	public class ExpressionSample : MonoBehaviour
 	{
-		[VariableConstraint(0, 10)]
+		[VariableConstraint(VariableType.Asset)]
 		public VariableSource Source = new VariableSource();
 
 		public Expression Expression = new Expression();

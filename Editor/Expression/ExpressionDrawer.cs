@@ -11,4 +11,13 @@ namespace PiRhoSoft.Expressions.Editor
 			return new ExpressionField(property);
 		}
 	}
+
+	[CustomPropertyDrawer(typeof(AssignmentExpression))]
+	public class AssignmentExpressionDrawer : PropertyDrawer
+	{
+		public override VisualElement CreatePropertyGUI(SerializedProperty property)
+		{
+			return new AssignmentField(property);
+		}
+	}
 }

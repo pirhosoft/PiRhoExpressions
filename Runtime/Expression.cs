@@ -47,33 +47,6 @@ namespace PiRhoSoft.Expressions
 			return variable.As<ExpectedType>();
 		}
 
-		public Variable Execute(IVariableDictionary variables, Variable thisObject)
-		{
-			variables.AddVariable("this", thisObject);
-			var variable = Execute(variables);
-			variables.RemoveVariable("this");
-
-			return variable;
-		}
-
-		public Variable Execute(IVariableDictionary variables, VariableType expectedType, Variable thisObject)
-		{
-			variables.AddVariable("this", thisObject);
-			var variable =  Execute(variables, expectedType);
-			variables.RemoveVariable("this");
-
-			return variable;
-		}
-
-		public ExpectedType Execute<ExpectedType>(IVariableDictionary variables, Variable thisObject)
-		{
-			variables.AddVariable("this", thisObject);
-			var variable = Execute<ExpectedType>(variables);
-			variables.RemoveVariable("this");
-
-			return variable;
-		}
-
 		private void Compile()
 		{
 			_operation = null; // Cleared in case an exception is thrown.
@@ -102,21 +75,27 @@ namespace PiRhoSoft.Expressions
 	[Serializable]
 	public class AssignmentExpression : Expression
 	{
+		public const string ValueName = "value";
+
 		public override bool IsValid => _operation is AssignOperator;
 		public override Parser Parser => Parser.Assignment;
 
-		public void Assign(IVariableDictionary variables, Variable value)
+		private AggregateDictionary _variables = new AggregateDictionary();
+		private VariableDictionary _wrapper = new VariableDictionary();
+
+		public AssignmentExpression()
 		{
-			variables.AddVariable("value", value);
-			_operation.Evaluate(variables);
-			variables.RemoveVariable("value");
+			_wrapper.AddVariable(ValueName, Variable.Empty);
+			_variables.AddVariables(_wrapper);
 		}
 
-		public void Assign(IVariableDictionary variables, Variable value, Variable thisObject)
+		public void Assign(IVariableDictionary variables, Variable value)
 		{
-			variables.AddVariable("this", thisObject);
-			Assign(variables, value);
-			variables.RemoveVariable("this");
+			_wrapper.SetVariable(ValueName, value);
+			_variables.AddVariables(variables);
+			_operation.Evaluate(_variables);
+			_variables.RemoveVariables(variables);
+			_wrapper.SetVariable(ValueName, Variable.Empty);
 		}
 	}
 

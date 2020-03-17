@@ -3,7 +3,7 @@ using System.Text;
 
 namespace PiRhoSoft.Expressions
 {
-	public abstract class MemberOperator : Operator, IInfixOperator
+	public abstract class MemberOperator : Operator, IInfixOperator, IAssignableOperation
 	{
 		public IOperation Left { get; private set; }
 		public string Symbol { get; private set; }
@@ -25,6 +25,14 @@ namespace PiRhoSoft.Expressions
 				throw new MemberNotFoundException(left, right);
 
 			return value;
+		}
+
+		public SetVariableResult Assign(IVariableDictionary variables, Variable value)
+		{
+			var left = Left.Evaluate(variables);
+			var right = GetMember(variables);
+
+			return Variable.Assign(ref left, right, value);
 		}
 
 		public override void Print(StringBuilder printer)
